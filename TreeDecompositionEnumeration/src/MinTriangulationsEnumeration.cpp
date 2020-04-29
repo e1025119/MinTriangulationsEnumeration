@@ -161,12 +161,13 @@ int main(int argc, char* argv[]) {
 	}
 
 	// Open output files
-	ofstream detailedOutput;
+	ofstream detailedOutput, minTriangOutput;
 	if (print != NEVER) {
 		algorithm = algorithm != "" ? algorithm : "mcs";
 		string outputFileName = inputFile.getField() + "." + inputFile.getType()
 				+ "." + inputFile.getName() + "." + algorithm + ".csv";
 		detailedOutput.open(outputFileName.c_str());
+		minTriangOutput.open("minTriangulations_"+inputFile.getName()+".txt");
 	}
 	string summaryFileName = "summary.csv";
 	ofstream summaryOutput;
@@ -190,6 +191,9 @@ int main(int argc, char* argv[]) {
 	while (enumerator.hasNext()) {
 		ChordalGraph triangulation = enumerator.next();
 		results.newResult(triangulation);
+		minTriangOutput << "start\n";
+		triangulation.printToFile(minTriangOutput);
+		minTriangOutput << "end\n";
 		double totalTimeInSeconds = double(clock() - startTime) / CLOCKS_PER_SEC;
 		if (isTimeLimited && totalTimeInSeconds >= timeLimitInSeconds) {
 			timeLimitExceeded = true;
@@ -198,6 +202,7 @@ int main(int argc, char* argv[]) {
 	}
 	if (print != NEVER) {
 		detailedOutput.close();
+		minTriangOutput.close();
 	}
 
 	// Print summary to file
