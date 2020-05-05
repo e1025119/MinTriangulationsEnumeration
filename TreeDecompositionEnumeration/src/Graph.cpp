@@ -296,7 +296,7 @@ void Graph::print() const {
 }
 
 /* christoph: writes graph to a file*/	
-void Graph::printToFile(ofstream& out) const {
+void Graph::printToFile(ostream& out) const {
 	for (Node v=0; v<getNumberOfNodes(); v++) {
 		out << v << " has neighbors: {";
 		for (set<Node>::iterator jt = getNeighbors(v).begin(); jt!=getNeighbors(v).end(); ++jt) {
