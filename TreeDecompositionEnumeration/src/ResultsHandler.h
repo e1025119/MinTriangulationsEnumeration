@@ -46,7 +46,7 @@ public:
 	}
 };
 
-enum WhenToPrint { NEVER, ALWAYS, IF_IMPROVED };
+enum WhenToPrint { NEVER, ALWAYS, IF_IMPROVED, TRIANG };
 
 class ResultsHandler {
 	Graph graph;

@@ -106,6 +106,8 @@ int main(int argc, char* argv[]) {
 				print = NEVER;
 			} else if (flagValue == "improved") {
 				print = IF_IMPROVED;
+			} else if (flagValue == "triang") {
+				print = TRIANG;
 			}
 		} else if (flagName == "alg") {
 			algorithm = algorithm + "." + flagValue;
@@ -162,11 +164,12 @@ int main(int argc, char* argv[]) {
 
 	// Open output files
 	ofstream detailedOutput, minTriangOutput;
-	if (print != NEVER) {
+	if (print == ALWAYS || print == IF_IMPROVED) {
 		algorithm = algorithm != "" ? algorithm : "mcs";
 		string outputFileName = inputFile.getField() + "." + inputFile.getType()
 				+ "." + inputFile.getName() + "." + algorithm + ".csv";
 		detailedOutput.open(outputFileName.c_str());
+	} else if (print == TRIANG) {
 		minTriangOutput.open("minTriangulations_"+inputFile.getName()+".txt");
 	}
 	string summaryFileName = "summary.csv";
@@ -191,17 +194,20 @@ int main(int argc, char* argv[]) {
 	while (enumerator.hasNext()) {
 		ChordalGraph triangulation = enumerator.next();
 		results.newResult(triangulation);
-		minTriangOutput << "start\n";
-		triangulation.printToFile(minTriangOutput);
-		minTriangOutput << "end\n";
+		if (print == TRIANG) {
+			minTriangOutput << "start\n";
+			triangulation.printToFile(minTriangOutput);
+			minTriangOutput << "end\n";
+		}
 		double totalTimeInSeconds = double(clock() - startTime) / CLOCKS_PER_SEC;
 		if (isTimeLimited && totalTimeInSeconds >= timeLimitInSeconds) {
 			timeLimitExceeded = true;
 			break;
 		}
 	}
-	if (print != NEVER) {
+	if (print == ALWAYS || print == IF_IMPROVED) {
 		detailedOutput.close();
+	} else if (print == TRIANG) {
 		minTriangOutput.close();
 	}
 
