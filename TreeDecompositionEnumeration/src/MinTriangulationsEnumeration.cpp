@@ -197,7 +197,7 @@ int main(int argc, char* argv[]) {
 		if (print == TRIANG) {
 			cout << "start\n";
 			minTriangOutput << "start\n";
-			triangulation.print();
+			triangulation.print(false);
 			triangulation.printToFile(minTriangOutput);
 			cout << "end\n";
 			minTriangOutput << "end\n";

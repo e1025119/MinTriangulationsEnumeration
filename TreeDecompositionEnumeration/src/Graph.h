@@ -65,6 +65,8 @@ public:
 	set<Node> getComponent(Node v, const set<Node>& removedNodes);
 	// Prints the graph
 	void print() const;
+	//christoph: Prints the graph, less verbose format
+	void print(int verboseFlag) const;
 	//christoph: writes the graph to a file
 	void printToFile(ostream& out) const;
 };
