@@ -195,8 +195,11 @@ int main(int argc, char* argv[]) {
 		ChordalGraph triangulation = enumerator.next();
 		results.newResult(triangulation);
 		if (print == TRIANG) {
+			cout << "start\n";
 			minTriangOutput << "start\n";
+			triangulation.print();
 			triangulation.printToFile(minTriangOutput);
+			cout << "end\n";
 			minTriangOutput << "end\n";
 		}
 		double totalTimeInSeconds = double(clock() - startTime) / CLOCKS_PER_SEC;
