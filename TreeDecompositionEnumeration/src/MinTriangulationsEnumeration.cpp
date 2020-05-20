@@ -195,11 +195,8 @@ int main(int argc, char* argv[]) {
 		ChordalGraph triangulation = enumerator.next();
 		results.newResult(triangulation);
 		if (print == TRIANG) {
-			cout << "start\n";
 			minTriangOutput << "start\n";
-			triangulation.print(false);
 			triangulation.printToFile(minTriangOutput);
-			cout << "end\n";
 			minTriangOutput << "end\n";
 		}
 		double totalTimeInSeconds = double(clock() - startTime) / CLOCKS_PER_SEC;
@@ -211,6 +208,7 @@ int main(int argc, char* argv[]) {
 	if (print == ALWAYS || print == IF_IMPROVED) {
 		detailedOutput.close();
 	} else if (print == TRIANG) {
+		cout << "minTriangulations_" << inputFile.getName() << ".txt" << endl;
 		minTriangOutput.close();
 	}
 
