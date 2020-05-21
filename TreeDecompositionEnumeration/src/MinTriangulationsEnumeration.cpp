@@ -195,7 +195,6 @@ int main(int argc, char* argv[]) {
 		ChordalGraph triangulation = enumerator.next();
 		results.newResult(triangulation);
 		if (print == TRIANG) {
-			minTriangOutput << "start\n";
 			triangulation.printToFile(minTriangOutput);
 			minTriangOutput << "end\n";
 		}
