@@ -316,10 +316,8 @@ void Graph::printToFile(ostream& out) const {
 	for (Node v=0; v<getNumberOfNodes(); v++) {
 		out << v << " {";
 		for (set<Node>::iterator jt = getNeighbors(v).begin(); jt!=getNeighbors(v).end(); ++jt) {
-			out << *jt << ",";
+			out << *jt << " ";
 		}
-		out << '\b';
-		out << "";
 		out << "}" << endl;
 	}
 }
