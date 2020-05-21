@@ -300,12 +300,12 @@ void Graph::print() const {
 void Graph::print(int verboseFlag) const {
 	for (Node v=0; v<getNumberOfNodes(); v++) {
 		if(verboseFlag) {
-		cout << v << " has neighbors: {";
+		cout << (v+1) << " has neighbors: {";
 		} else {
-		cout << v << " {";
+		cout << (v+1) << " {";
 		}
 		for (set<Node>::iterator jt = getNeighbors(v).begin(); jt!=getNeighbors(v).end(); ++jt) {
-			cout << *jt << " ";
+			cout << ((*jt)+1) << " ";
 		}
 		cout << "}" << endl;
 	}
@@ -314,9 +314,9 @@ void Graph::print(int verboseFlag) const {
 /* christoph: writes graph to a file*/	
 void Graph::printToFile(ostream& out) const {
 	for (Node v=0; v<getNumberOfNodes(); v++) {
-		out << v << " {";
+		out << (v+1) << " {";
 		for (set<Node>::iterator jt = getNeighbors(v).begin(); jt!=getNeighbors(v).end(); ++jt) {
-			out << *jt << " ";
+			out << ((*jt)+1) << " ";
 		}
 		out << "}" << endl;
 	}
