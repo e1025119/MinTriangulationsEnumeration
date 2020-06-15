@@ -296,18 +296,18 @@ void Graph::print() const {
 }
 
 
-/* christoph: writes graph to cout */	
+/* christoph: writes graph to cerr (different stream than cout, to make this output seperable in later steps) */	
 void Graph::print(int verboseFlag) const {
 	for (Node v=0; v<getNumberOfNodes(); v++) {
 		if(verboseFlag) {
-		cout << (v+1) << " has neighbors: {";
+		cerr << (v+1) << " has neighbors: {";
 		} else {
-		cout << (v+1) << " {";
+		cerr << (v+1) << " {";
 		}
 		for (set<Node>::iterator jt = getNeighbors(v).begin(); jt!=getNeighbors(v).end(); ++jt) {
-			cout << ((*jt)+1) << " ";
+			cerr << ((*jt)+1) << " ";
 		}
-		cout << "}" << endl;
+		cerr << "}" << endl;
 	}
 }
 

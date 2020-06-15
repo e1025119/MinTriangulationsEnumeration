@@ -195,7 +195,9 @@ int main(int argc, char* argv[]) {
 		ChordalGraph triangulation = enumerator.next();
 		results.newResult(triangulation);
 		if (print == TRIANG) {
+			triangulation.print(false);
 			triangulation.printToFile(minTriangOutput);
+			cerr << "end\n";
 			minTriangOutput << "end\n";
 		}
 		double totalTimeInSeconds = double(clock() - startTime) / CLOCKS_PER_SEC;
